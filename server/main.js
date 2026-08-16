@@ -1,22 +1,30 @@
 const clients = new Map();
 
-function sendList() {
-    const users = Array.from(clients);
-    const message = {
-        type: "users",
-        users
-    };
-
-    for (const s of clients)
-        if (s.readyState === WebSocket.OPEN)
-            s.send(JSON.stringify(message));
+async function createResponse(path, mimeType) {
+	const file = await Deno.open(path, { read: true });
+	const response = new Response(file.readable);
+	response.headers.set("Content-Type", mimeType);
+	return response;
 }
 
 Deno.serve({
+    hostname: "0.0.0.0",
     port: 8080,
     async handler(request) {
         if (request.headers.get("upgrade") !== "websocket") {
-            return;
+            const url = new URL(request.url);
+			switch (url.pathname) {
+				case "/assets/js/client.js":
+					return await createResponse("./client/assets/js/client.js", "text/javascript");
+                case "/assets/js/custom-caret.js":
+                    return await createResponse("./client/assets/js/custom-caret.js", "text/javascript");
+				case "/assets/css/styles.css":
+					return await createResponse("./client/assets/css/styles.css", "text/css");
+				case "/":
+					return await createResponse("./client/index.html", "text/html");
+				default:
+					return new Response("# not found ;", { status: 404 });
+            }
         }
 
         const { socket, response } = Deno.upgradeWebSocket(request);
@@ -32,23 +40,21 @@ Deno.serve({
             }
 
             socket.send(JSON.stringify(msg));
-            sendList();
         }
 
         socket.onmessage = (ev) => {
             const resp = JSON.parse(ev.data);
-            const recv = clients.get(resp.to);
 
-            if (recv && recv.readyState === WebSocket.OPEN) {
+            for (const socket of clients.values()) {
                 const msg = {
                     type: "message",
                     from: uuid,
                     text: resp.text
                 };
 
-                recv.send(JSON.stringify(msg));
-                console.log(`# ${uuid}: sent "${msg.text}" to ${resp.to} ;`);
-            } else console.log(`# ${uuid}: failed to send message to ${resp.to} > user offline ;`);
+                socket.send(JSON.stringify(msg));
+                console.log(`# ${uuid}: sent "${msg.text}" ;`);
+            };
         }
 
         socket.onerror = (err) => {
@@ -59,7 +65,6 @@ Deno.serve({
         socket.onclose = () => {
             console.log(`# ${uuid}: disconnecting... ;`);
             clients.delete(uuid);
-            sendList();
         }
 
         return response;

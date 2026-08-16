@@ -2,11 +2,32 @@
 <html>
   <head>
     <title>Hello, World!</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
-      <fieldset class="client-list">
-        <legend class="box-header">[ ONLINE CLIENTS ]</legend>
-      </fieldset>
+    <div class="message-stream">
+      <div class="message receive">
+        <span class="time" id="system-time"></span>
+        <span class="sender-id">SYSTM</span>
+        <span class="direction">&gt;</span>
+        <span class="text">SOCKET CONNECTION ESTABLISHED.</span>
+      </div>
+      
+    </div>
+
+    <div class="input-box-container">
+      <span class="input-prompt">~</span>
+      <div class="input-wrapper">
+        <input type="text" class="input-box" id="input-box" placeholder="" autofocus>
+        <span class="input-caret" id="custom-caret"></span>
+        <span class="text-ruler" id="text-ruler"></span>
+      </div>
+    </div>
+
+    <!-- custom caret -->
+    <script type="module" src="assets/js/custom-caret.js"></script>
+
+    <!-- websocket functionality -->
+    <script type="module" src="assets/js/client.js"></script>
   </body>
 </html>
