@@ -32,6 +32,12 @@ install **deno** onto your private server or your preferred device to host the s
   $ curl -fsSL https://deno.land/install.sh | sh
 ```
 
+afterwards, clone the repo:
+
+```bash
+  $ git clone https://github.com/khalid-etb/choochoo.git && cd choochoo
+```
+
 ### ! running
 
 after installing **deno**, run this command in your cli:
