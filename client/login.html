@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>{ choochoo! - login }</title>
+    <link rel="stylesheet" href="assets/css/login.css" />
+  </head>
+  <body>
+      <canvas id="bg-canvas"></canvas>
+
+      <div class="login-container">
+        <div class="login-card">
+          <h2 class="login-text">{ choochoo! }</h2>
+
+          <div class="input-group">
+            <label for="username">? user:</label>
+            <input type="text" id="username" name="username" placeholder="john.doe" required />
+          </div>
+
+          <div class="input-group">
+            <label for="password">? pass:</label>
+            <input type="password" id="password" name="password" placeholder="••••••••" required />
+          </div>
+
+          <div class="button-group">
+            <button type="button" class="btn login">login</button>
+            <button type="button" class="btn register">register</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- snake char bg -->
+      <script src="assets/js/snake-bg.js"></script>
+
+      <!-- login handler -->
+      <script src="assets/js/login.js"></script>
+  </body>
+</html>

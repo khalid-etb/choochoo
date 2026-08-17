@@ -1,0 +1,141 @@
+html,body {
+    overflow: hidden;
+    touch-action: none;
+}
+
+body {
+  padding: 25px;
+  background-color: #151515;
+}
+
+#bg-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.login-container {
+  position: relative;
+  z-index: 1;
+
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Courier New', Courier, monospace;
+  color: #fff;
+}
+
+.login-card {
+  width: 90%;
+  max-width: 400px;
+  padding: 32px;
+
+  background-color: rgba(30,30,30, 0.75);
+  backdrop-filter: blur(8px);
+
+  border: 2px solid #363636;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  box-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.5),
+    0 0 20px rgba(255, 255, 255, 0.3),
+    0 0 30px rgba(255, 255, 255, 0.1);
+}
+
+.login-text {
+  margin: 0 0 8px 0;
+  text-align: center;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.input-group label {
+  font-size: 0.9rem;
+  color: #aaa;
+  white-space: nowrap;
+}
+
+.input-group input {
+  width: 40%;;
+  border: 0;
+  outline: none;
+
+  background-color: transparent;
+  color: #fff;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.input-group:has(input:focus) label {
+  font-weight: bold;
+  color: #fff;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin-top: 8px;
+}
+
+.btn {
+  width: auto;
+
+  border: none;
+  outline: none;
+  background-color: transparent;
+
+  color: #fff;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: default;
+}
+
+.btn:hover {
+  animation: none !important;
+  background-color: #fff !important;
+
+  box-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.5),
+    0 0 20px rgba(255, 255, 255, 0.3),
+    0 0 30px rgba(255, 255, 255, 0.1);
+  color: #151515;
+}
+
+.btn-flash {
+  animation: flash-bg 1s steps(1) infinite;
+}
+
+@keyframes flash-bg {
+  0%, 100% {
+    background-color: transparent;
+    box-shadow: none;
+    color: #fff
+  }
+
+  50% {
+    background-color: #fff;
+    box-shadow: 
+      0 0 10px rgba(255, 255, 255, 0.5),
+      0 0 20px rgba(255, 255, 255, 0.3),
+      0 0 30px rgba(255, 255, 255, 0.1);
+    color: #151515;
+  }
+}
