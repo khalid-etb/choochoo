@@ -47,13 +47,13 @@ after installing **deno**, run this command in your cli:
 
 ### ! connecting
 
-to connect to the server, first get your local / public ip depending on where you want to connect from.
+to connect to the server, first get the local / public ip of the device you ran the server on.
 
 *p.s. you need to setup port forwarding if you'd like to connect from anywhere and allow port `8080` > [guide](https://www.noip.com/support/knowledgebase/general-port-forwarding-guide)*
 
-finding your local ip can be done through your cli.
+finding the local ip can be done through your cli.
 
-**\* windows:** (look for your ipv4 address *e.g. `192.168.1.50`*)
+**\* windows:** (look for the ipv4 address *e.g. `192.168.1.50`*)
 ```bash
   $ ipconfig
 ```
