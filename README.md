@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/khalid-etb/scrob">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src=".github/assets/logo.png" alt="Logo" width="80" height="80">
   </a>
 </p>
 
